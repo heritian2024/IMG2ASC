@@ -16,4 +16,4 @@
 
 [源码地址](https://github.com/Sundae97/Image2Characters)
 
-4.[Python二十行代码实现图片转字符图片](https://blog.csdn.net/dpengwang/article/details/79076188)
+4.[将普通图片转化为字符画(Python)](https://blog.csdn.net/Shreck66/article/details/51464843)
