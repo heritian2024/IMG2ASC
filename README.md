@@ -1,4 +1,14 @@
-# IMG2ASCII
+# IMG2ASC
+
+
+
+## 原理
+
+
+
+
+https://blog.csdn.net/xdrt81y/article/details/8289963
+
 
 ## Reference
 
