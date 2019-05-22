@@ -6,6 +6,5 @@ public class Main {
 
         ImageConvert.Image2Text("C:/Users/ch/Desktop/sample.png", "C:/Users/ch/Desktop/sample.txt");
 
-
     }
 }
