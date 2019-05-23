@@ -51,6 +51,8 @@ public class ImageHelper {
     }
 
     /**
+     * 实现图像压缩
+     *
      * @param inFilePath
      * @param outFilePath
      * @param width
