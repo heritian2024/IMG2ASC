@@ -32,15 +32,13 @@ public class ImageHelper {
             sy = sx;
             targetH = (int) (sy * source.getHeight());
         }
-        //
-        int type = source.getType();
-        if (type == BufferedImage.TYPE_CUSTOM) {
+        if (BufferedImage.TYPE_CUSTOM == source.getType()) {
             ColorModel cm = source.getColorModel();
             WritableRaster raster = cm.createCompatibleWritableRaster(targetW, targetW);
             boolean alphaPremultiplied = cm.isAlphaPremultiplied();
             target = new BufferedImage(cm, raster, alphaPremultiplied, null);
         } else {
-            target = new BufferedImage(targetW, targetH, type);
+            target = new BufferedImage(targetW, targetH, source.getType());
         }
         Graphics2D graphics2D = target.createGraphics();
         // smoother than exlax
