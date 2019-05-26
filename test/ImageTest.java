@@ -6,7 +6,9 @@ public class ImageTest {
         String infile = "C:/Users/ch/Desktop/sample.png";
         String outfile = "C:/Users/ch/Desktop/sample.txt";
 
-        ImageConvert.Image2Text(infile, outfile);
+        ImageConvert imageConvert = new ImageConvert();
+
+        imageConvert.Image2Text(infile, outfile);
 
     }
 }

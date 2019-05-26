@@ -1,5 +1,5 @@
 import app.GifConvert;
-import app.ImageConvert;
+import util.FileHelper;
 
 /**
  * Created by ch on 2019/5/24.
@@ -7,6 +7,15 @@ import app.ImageConvert;
 public class GifTest {
 
     public static void main(String[] args) {
-        GifConvert.Gif2Texts("C:/Users/ch/Desktop/兄贵.gif","C:/Users/ch/Desktop/gif/");
+
+        String gif = "C:/Users/ch/Desktop/sample.gif";
+        String path = "C:/Users/ch/Desktop/gif/";
+        FileHelper.CheckPath(path);
+
+        GifConvert gifConvert = new GifConvert(5);
+
+        gifConvert.Gif2Texts(gif, path);
+        gifConvert.Gif2Gif(gif, path);
+
     }
 }

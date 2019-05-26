@@ -12,7 +12,7 @@ import java.io.IOException;
 /**
  * Created by ch on 2019/5/19.
  */
-public class ImageConvert {
+public class ImageConvert extends BaseConvert {
 
     /**
      * 图片转文本
@@ -20,7 +20,7 @@ public class ImageConvert {
      * @param inFilePath  输入Image路径
      * @param outFilePath 输出Text路径
      */
-    public static void Image2Text(String inFilePath, String outFilePath) {
+    public void Image2Text(String inFilePath, String outFilePath) {
         try {
             BufferedImage bufferedImage = ImageHelper.resize(ImageIO.read(new File(inFilePath)), 150, 150);
             StringBuffer sb = new StringBuffer();

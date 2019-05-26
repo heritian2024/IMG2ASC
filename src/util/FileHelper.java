@@ -30,4 +30,15 @@ public class FileHelper {
             }
         }
     }
+
+    /**
+     * 路径检测，自动创建文件
+     * @param path
+     */
+    public static void CheckPath(String path){
+        File file = new File(path);
+        if(!file.exists()){
+            file.mkdirs();
+        }
+    }
 }
