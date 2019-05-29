@@ -8,13 +8,13 @@ public class GifTest {
 
     public static void main(String[] args) {
 
-        String gif = "C:/Users/ch/Desktop/sample.gif";
+        String gif = "C:/Users/ch/Desktop/素材/香蕉君回头.gif";
         String path = "C:/Users/ch/Desktop/gif/";
         FileHelper.CheckPath(path);
 
-        GifConvert gifConvert = new GifConvert(5);
+        GifConvert gifConvert = new GifConvert(3);
 
-        gifConvert.Gif2Texts(gif, path);
+//        gifConvert.Gif2Texts(gif, path);
         gifConvert.Gif2Gif(gif, path);
 
     }

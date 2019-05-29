@@ -8,7 +8,6 @@ import util.FileHelper;
 import util.GIF.AnimatedGifEncoder;
 
 import javax.imageio.stream.FileImageInputStream;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -20,9 +19,10 @@ public class GifConvert extends BaseConvert {
 
     private int SPEED = 5;
 
-    public GifConvert(){}
+    public GifConvert() {
+    }
 
-    public GifConvert(int speed){
+    public GifConvert(int speed) {
         this.SPEED = speed;
     }
 
@@ -70,13 +70,15 @@ public class GifConvert extends BaseConvert {
      */
     public void Gif2Gif(String inFilePath, String outDirectoryPath) {
         try {
-            FileImageInputStream fileImageInputStream = new FileImageInputStream(new File(inFilePath));
+            File file = new File(inFilePath);
+            FileImageInputStream fileImageInputStream = new FileImageInputStream(file);
             GIFImageReader gifImageReader = new GIFImageReader(new GIFImageReaderSpi());
             gifImageReader.setInput(fileImageInputStream);
             // 每一帧都保存为图片
             int number = gifImageReader.getNumImages(true);
             BufferedImage[] bufferedImages = new BufferedImage[number];
             for (int i = 0; i < number; i++) {
+                System.out.println(i);
                 StringBuffer sb = new StringBuffer();
                 int width = gifImageReader.read(i).getWidth();
                 int height = gifImageReader.read(i).getHeight();
@@ -90,15 +92,14 @@ public class GifConvert extends BaseConvert {
                     }
                     sb.append("\r\n");
                 }
-                bufferedImages[i] = txt2img(width, height, sb.toString(), outDirectoryPath + "/" + i + ".jpg", SPEED);
+                bufferedImages[i] = txt2img(width, height, sb.toString(), outDirectoryPath + "/" + i + ".img", SPEED, false);
             }
-            JPGS2GIF(bufferedImages, outDirectoryPath + "out.gif", 200);
+            JPGS2GIF(bufferedImages, outDirectoryPath + file.getName(), 200);
         } catch (IOException e) {
             e.printStackTrace();
             //TODO:替换为log4j
             System.out.println("文件读取失败");
         }
-
     }
 
     /**
