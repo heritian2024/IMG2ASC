@@ -29,12 +29,12 @@ public class GifConvert extends BaseConvert {
     /**
      * 动图转换，输出多文本
      *
-     * @param inFilePath       输入GIF路径
+     * @param inGifPath       输入GIF路径
      * @param outDirectoryPath 输出文件夹路径
      */
-    public void Gif2Texts(String inFilePath, String outDirectoryPath) {
+    public void Gif2Texts(String inGifPath, String outDirectoryPath) {
         try {
-            FileImageInputStream fileImageInputStream = new FileImageInputStream(new File(inFilePath));
+            FileImageInputStream fileImageInputStream = new FileImageInputStream(new File(inGifPath));
             GIFImageReader gifImageReader = new GIFImageReader(new GIFImageReaderSpi());
             gifImageReader.setInput(fileImageInputStream);
             // 每一帧都保存为文本
@@ -65,12 +65,12 @@ public class GifConvert extends BaseConvert {
     /**
      * 动图转换，输出文本式动图
      *
-     * @param inFilePath       输入GIF路径
+     * @param inGifPath       输入GIF路径
      * @param outDirectoryPath 输出文件夹路径
      */
-    public void Gif2Gif(String inFilePath, String outDirectoryPath) {
+    public void Gif2Gif(String inGifPath, String outDirectoryPath) {
         try {
-            File file = new File(inFilePath);
+            File file = new File(inGifPath);
             FileImageInputStream fileImageInputStream = new FileImageInputStream(file);
             GIFImageReader gifImageReader = new GIFImageReader(new GIFImageReaderSpi());
             gifImageReader.setInput(fileImageInputStream);
