@@ -96,7 +96,7 @@ public class GifConvert extends BaseConvert {
                 String SUFFIX = SPEED + "-";
                 bufferedImages[i] = txt2img(width, height, sb.toString(), outDirectoryPath + "/" + SUFFIX + i + ".img", SPEED, false);
             }
-            JPGS2GIF(bufferedImages, outDirectoryPath + file.getName(), 200);
+            JPGS2GIF(bufferedImages, outDirectoryPath + SPEED + file.getName(), 200);
         } catch (IOException e) {
             e.printStackTrace();
             //TODO:替换为log4j
