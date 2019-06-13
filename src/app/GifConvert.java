@@ -29,7 +29,7 @@ public class GifConvert extends BaseConvert {
     /**
      * 动图转换，输出多文本
      *
-     * @param inGifPath       输入GIF路径
+     * @param inGifPath        输入GIF路径
      * @param outDirectoryPath 输出文件夹路径
      */
     public void Gif2Texts(String inGifPath, String outDirectoryPath) {
@@ -53,7 +53,8 @@ public class GifConvert extends BaseConvert {
                     }
                     sb.append("\r\n");
                 }
-                FileHelper.WriteFile(sb.toString(), outDirectoryPath + "/" + i + ".txt");
+                String SUFFIX = SPEED + "-";
+                FileHelper.WriteFile(sb.toString(), outDirectoryPath + "/" + SUFFIX + i + ".txt");
             }
         } catch (IOException e) {
             e.printStackTrace();
@@ -65,7 +66,7 @@ public class GifConvert extends BaseConvert {
     /**
      * 动图转换，输出文本式动图
      *
-     * @param inGifPath       输入GIF路径
+     * @param inGifPath        输入GIF路径
      * @param outDirectoryPath 输出文件夹路径
      */
     public void Gif2Gif(String inGifPath, String outDirectoryPath) {
@@ -92,7 +93,8 @@ public class GifConvert extends BaseConvert {
                     }
                     sb.append("\r\n");
                 }
-                bufferedImages[i] = txt2img(width, height, sb.toString(), outDirectoryPath + "/" + i + ".img", SPEED, false);
+                String SUFFIX = SPEED + "-";
+                bufferedImages[i] = txt2img(width, height, sb.toString(), outDirectoryPath + "/" + SUFFIX + i + ".img", SPEED, false);
             }
             JPGS2GIF(bufferedImages, outDirectoryPath + file.getName(), 200);
         } catch (IOException e) {

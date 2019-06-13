@@ -6,10 +6,16 @@ import util.BatchHelper;
 public class BatchTest {
     public static void main(String[] args) {
 
-        String inGifPath = "C:/Users/ch/Desktop/素材/";
-        String outGifPath = "C:/Users/ch/Desktop/gif/";
+        String inGifPath = "C:/Users/ch/Desktop/GifIn/";
+        String outGifPath = "C:/Users/ch/Desktop/GifOut/";
+        for (int i = 1; i <= 3; i++) {
+            BatchHelper.GifBatch(inGifPath, outGifPath, i);
+        }
 
-        BatchHelper.GifBatch(inGifPath, outGifPath, 2);
-
+        String inImagePath = "C:/Users/ch/Desktop/ImageIn/";
+        String outImagePath = "C:/Users/ch/Desktop/ImageOut/";
+        for (int i = 1; i <= 6; i++) {
+            BatchHelper.ImageBatch(inImagePath, outImagePath, 2);
+        }
     }
 }

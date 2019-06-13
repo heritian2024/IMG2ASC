@@ -7,7 +7,8 @@ package algo;
  * Gray = R*0.299 + G*0.587 + B*0.114
  */
 public class RGB2Gray {
-    //    private static String ascii = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\\\"^`'.";
+//    private static String base = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\\\"^`'.";
+//    private static String base = "@#&$%*o!;.";
     private static String base = "@#&$%*o!;.";
 
     public static char conver(int pixel) {
