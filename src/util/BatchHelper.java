@@ -1,6 +1,7 @@
 package util;
 
 import app.GifConvert;
+import app.ImageConvert;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -10,8 +11,23 @@ import java.util.ArrayList;
  */
 public class BatchHelper {
 
-    public static void ImgBatch(String inpath, String outpath) {
-
+    /**
+     * Image批处理
+     *
+     * @param inpath
+     * @param outpath
+     */
+    public static void ImageBatch(String inpath, String outpath, int speed) {
+        try {
+            FileHelper.CheckPath(outpath);
+            ImageConvert imageConvert = new ImageConvert(speed);
+            ArrayList<File> arrayList = getAllFiles(inpath);
+            for (File file : arrayList) {
+                imageConvert.Image2Image(file.getPath(), outpath);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
     /**
@@ -22,6 +38,7 @@ public class BatchHelper {
      */
     public static void GifBatch(String inpath, String outpath, int speed) {
         try {
+            FileHelper.CheckPath(outpath);
             GifConvert gifConvert = new GifConvert(speed);
             ArrayList<File> arrayList = getAllFiles(inpath);
             for (File file : arrayList) {
@@ -48,7 +65,7 @@ public class BatchHelper {
             for (File fileIndex : files) {
                 //如果这个文件是目录，则进行递归搜索
                 if (fileIndex.isDirectory()) {
-                    getAllFiles(fileIndex.getPath());
+                    fileList.addAll(getAllFiles(fileIndex.getPath()));
                 } else {
                     //如果文件是普通文件，则将文件句柄放入集合中
                     fileList.add(fileIndex);

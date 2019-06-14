@@ -1,13 +1,9 @@
 package app;
 
 import algo.RGB2Gray;
-import com.sun.imageio.plugins.gif.GIFImageReader;
-import com.sun.imageio.plugins.gif.GIFImageReaderSpi;
 import util.FileHelper;
-import util.ImageHelper;
 
 import javax.imageio.ImageIO;
-import javax.imageio.stream.FileImageInputStream;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -29,13 +25,13 @@ public class ImageConvert extends BaseConvert {
     /**
      * 图片转文本
      *
-     * @param inImagePath 输入Image路径
-     * @param outFilePath 输出Text路径
+     * @param inImagePath      输入Image路径
+     * @param outDirectoryPath 输出Text路径
      */
-    public void Image2Text(String inImagePath, String outFilePath) {
+    public void Image2Text(String inImagePath, String outDirectoryPath) {
         try {
-//            BufferedImage bufferedImage = ImageHelper.resize(ImageIO.read(new File(inImagePath)), 150, 150);
-            BufferedImage bufferedImage = ImageIO.read(new File(inImagePath));
+            File file = new File(inImagePath);
+            BufferedImage bufferedImage = ImageIO.read(file);
             StringBuffer sb = new StringBuffer();
             // convert
             int width = bufferedImage.getWidth();
@@ -48,7 +44,8 @@ public class ImageConvert extends BaseConvert {
                 }
                 sb.append("\r\n");
             }
-            FileHelper.WriteFile(sb.toString(), outFilePath);
+            String SUFFIX = SPEED + "-";
+            FileHelper.WriteFile(sb.toString(), outDirectoryPath + SUFFIX + file.getName() + ".txt");
         } catch (IOException e) {
             e.printStackTrace();
             //TODO:替换为log4j
@@ -60,11 +57,12 @@ public class ImageConvert extends BaseConvert {
      * 将转换后的ASCII文本保存为图片
      *
      * @param inImagePath
-     * @param outImagePath
+     * @param outDirectoryPath
      */
-    public void Image2Image(String inImagePath, String outImagePath) {
+    public void Image2Image(String inImagePath, String outDirectoryPath) {
         try {
-            BufferedImage bufferedImage = ImageIO.read(new File(inImagePath));
+            File file = new File(inImagePath);
+            BufferedImage bufferedImage = ImageIO.read(file);
             StringBuffer sb = new StringBuffer();
             int width = bufferedImage.getWidth();
             int height = bufferedImage.getHeight();
@@ -78,7 +76,8 @@ public class ImageConvert extends BaseConvert {
                 }
                 sb.append("\r\n");
             }
-            txt2img(width, height, sb.toString(), outImagePath, SPEED, true);
+            String SUFFIX = SPEED + "-";
+            txt2img(width, height, sb.toString(), outDirectoryPath + SUFFIX + file.getName(), SPEED, true);
         } catch (IOException e) {
             e.printStackTrace();
             //TODO:替换为log4j

@@ -12,7 +12,7 @@ public class GifTest {
         String path = "C:/Users/ch/Desktop/gif/";
         FileHelper.CheckPath(path);
 
-        GifConvert gifConvert = new GifConvert(3);
+        GifConvert gifConvert = new GifConvert(6);
 
 //        gifConvert.Gif2Texts(gif, path);
         gifConvert.Gif2Gif(gif, path);
