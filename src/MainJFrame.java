@@ -145,16 +145,17 @@ public class MainJFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String inpath = inTextField.getText();
                 String outpath = outTextField.getText();
+                int speed = 4;
                 if (inpath.equals("") || outpath.equals("") || inpath.equals("输入文件夹路径") || outpath.equals("输出文件夹路径")) {
                     JOptionPane.showMessageDialog(null, "请检查输入输出路径的正确性！", "格式检查", JOptionPane.ERROR_MESSAGE);
                 } else {
                     if (b1.isSelected()) {
-                        if (JOptionPane.YES_NO_OPTION == JOptionPane.showConfirmDialog(null, "choose one", "choose one", JOptionPane.YES_NO_OPTION)) {
-                            new IMGThread(TYPE.IMG, inpath, outpath, 4).start();
+                        if (JOptionPane.YES_NO_OPTION == JOptionPane.showConfirmDialog(null, "输入文件夹：" + inpath + "\n输出文件夹：" + outpath + "\n像素模糊区块大小：" + speed, "信息确认", JOptionPane.YES_NO_OPTION)) {
+                            new IMGThread(TYPE.IMG, inpath + "/", outpath + "/", speed).start();
                         }
                     } else if (b2.isSelected()) {
-                        if (JOptionPane.YES_NO_OPTION == JOptionPane.showConfirmDialog(null, "choose one", "choose one", JOptionPane.YES_NO_OPTION)) {
-                            new IMGThread(TYPE.GIF, inpath, outpath, 4).start();
+                        if (JOptionPane.YES_NO_OPTION == JOptionPane.showConfirmDialog(null, "输入文件夹：" + inpath + "\n输出文件夹：" + outpath + "\n像素模糊区块大小：" + speed, "信息确认", JOptionPane.YES_NO_OPTION)) {
+                            new IMGThread(TYPE.GIF, inpath + "/", outpath + "/", speed).start();
                         }
                     } else if (b3.isSelected()) {
                         JOptionPane.showMessageDialog(null, "待开发！", "SORRY", JOptionPane.ERROR_MESSAGE);
