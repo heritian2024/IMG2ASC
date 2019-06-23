@@ -3,7 +3,6 @@ package app;
 import algo.RGB2Gray;
 import com.sun.imageio.plugins.gif.GIFImageReader;
 import com.sun.imageio.plugins.gif.GIFImageReaderSpi;
-import javafx.animation.Animation;
 import util.FileHelper;
 import util.GIF.AnimatedGifEncoder;
 
