@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <exe4j version="5.0.1" transformSequenceNumber="2">
-  <directoryPresets config="./doc/jre" />
+  <directoryPresets config="C:/Users/ch/Desktop/IMG2ASC/doc" />
   <application name="字符画转换工具" distributionSourceDir="C:/Users/ch/Desktop/IMG2ASC">
     <languages>
       <principalLanguage id="en" customLocalizationFile="" />
@@ -16,9 +16,11 @@
       <versionLine x="20" y="40" text="version %VERSION%" fontSize="8" fontColor="0,0,0" bold="false" />
     </text>
   </splashScreen>
-  <java mainClass="MainJFrame" vmParameters="-Dexe.path-${EXE4J_EXEDIR}" arguments="" allowVMPassthroughParameters="true" preferredVM="" bundleRuntime="true" minVersion="1.7" maxVersion="" allowBetaVM="true" jdkOnly="false">
+  <java mainClass="MainJFrame" vmParameters="-Dappdir-${EXE4J_EXEDIR}" arguments="" allowVMPassthroughParameters="true" preferredVM="client" bundleRuntime="true" minVersion="1.5" maxVersion="" allowBetaVM="true" jdkOnly="false">
     <searchSequence>
-      <directory location="./doc/jre" />
+      <registry />
+      <envVar name="JAVA_HOME" />
+      <envVar name="JDK_HOME" />
     </searchSequence>
     <classPath>
       <archive location="C:/Users/ch/Desktop/IMG2ASC/doc/IMG2ASC.jar" failOnError="false" />
