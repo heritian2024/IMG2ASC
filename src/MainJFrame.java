@@ -124,11 +124,11 @@ public class MainJFrame extends JFrame {
 
     private void TransactionInit() {
         JRadioButton b1 = new JRadioButton("IMG");
-        b1.setBounds(10, 10 + 50 + 10 + 50 + 10, 50, 30);
+        b1.setBounds(10, 10 + 50 + 10 + 50 + 10, 55, 30);
         JRadioButton b2 = new JRadioButton("GIF");
-        b2.setBounds(10 + 50 + 10, 10 + 50 + 10 + 50 + 10, 50, 30);
+        b2.setBounds(10 + 50 + 20, 10 + 50 + 10 + 50 + 10, 55, 30);
         JRadioButton b3 = new JRadioButton("FLV");
-        b3.setBounds(10 + 50 + 10 + 50 + 10, 10 + 50 + 10 + 50 + 10, 50, 30);
+        b3.setBounds(10 + 50 + 20 + 50 + 20, 10 + 50 + 10 + 50 + 10, 55, 30);
         ButtonGroup group = new ButtonGroup();
         group.add(b1);
         group.add(b2);
@@ -145,7 +145,7 @@ public class MainJFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String inpath = inTextField.getText();
                 String outpath = outTextField.getText();
-                int speed = 4;
+                int speed = 2;
                 if (inpath.equals("") || outpath.equals("") || inpath.equals("输入文件夹路径") || outpath.equals("输出文件夹路径")) {
                     JOptionPane.showMessageDialog(null, "请检查输入输出路径的正确性！", "格式检查", JOptionPane.ERROR_MESSAGE);
                 } else {
