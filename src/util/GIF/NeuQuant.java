@@ -192,7 +192,7 @@ public class NeuQuant {
 	}
 
 	/*
-	 * Main Learning Loop ------------------
+	 * MainJFrame Learning Loop ------------------
 	 */
 	public void learn() {
 
