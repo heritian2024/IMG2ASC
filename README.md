@@ -1,14 +1,18 @@
 # IMG2ASC
 
+## 字符画转换原理
 
+基本原理是颜色深的区域用笔画更复杂的字符替换，因此整体看起来可以保持原本的图画轮廓。
 
-## 原理
+用到了一个[彩色转灰度](https://blog.csdn.net/xdrt81y/article/details/8289963)的算法，Gray = R*0.299 + G*0.587 + B*0.114。
 
+## 窗口程序使用说明
 
+封装了一个JFrame界面进程，提供对IMG、GIF、FLV（未完成）的多线程处理支持。选择输入和输出的文件夹路径，点击开始即可开始转换逻辑。
 
+当前默认的像素处理速度参数Speed为4，后期将优化为可选。
 
-https://blog.csdn.net/xdrt81y/article/details/8289963
-
+![avatar](./doc/JFrame.png)
 
 ## Reference
 
