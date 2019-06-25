@@ -28,11 +28,11 @@
 
 ![cxk2](./doc/cxk2.gif)![2cxk2](./doc/2cxk2.gif)![cxk2](./doc/3cxk2.gif)![cxk2](./doc/3cxk2.gif)
 
-##支持作者
+## 支持作者
 
 工程会不定期更新，还有一些待定的功能可能后续会增加上，比如视频FLV的处理、公众号小程序支持。如果有问题可以留言或联系我，希望大家喜欢。
 
-![支付宝支持](./doc/alipay.jpg)![微信支持](./doc/wechat.jpg)
+![微信支持](./doc/wechat.jpg)![支付宝支持](./doc/alipay.jpg)
 
 ## Reference
 
