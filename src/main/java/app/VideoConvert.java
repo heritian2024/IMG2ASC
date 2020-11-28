@@ -19,7 +19,7 @@ public class VideoConvert {
 
         // Flv2Imgs("http://101.132.110.90/group1/M00/00/05/rBN4LFq8p5SAJT0wA5k4vpHKf7Q325.mp4", "D:\\test", "test2");
 //        Flv2Imgs("C:\\Users\\ch\\Desktop\\马宝国-连五鞭.flv", "C:\\Users\\ch\\Desktop\\Thread", "test");
-        Flv2Imgs("C:\\Users\\ch\\Desktop\\马宝国-耗子尾汁.flv", "C:\\Users\\ch\\Desktop\\Thread", "test");
+        Flv2Imgs("C:\\Users\\ch\\Desktop\\鸡你太美素材无水印.flv", "C:\\Users\\ch\\Desktop\\Thread", "test");
         //Flv2Imgs("C:/Users\\Administrator\\Desktop\\VID_20171229_162251.mp4", "G:\\test", "111");
     }
 
