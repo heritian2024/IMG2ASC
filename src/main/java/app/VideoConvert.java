@@ -1,6 +1,5 @@
 package app;
 
-import org.bytedeco.javacpp.avutil;
 import org.bytedeco.javacpp.opencv_core;
 import org.bytedeco.javacpp.opencv_core.IplImage;
 import org.bytedeco.javacv.*;
@@ -11,7 +10,6 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.Buffer;
 
 public class VideoConvert {
 
@@ -19,8 +17,9 @@ public class VideoConvert {
 
         // Flv2Imgs("http://101.132.110.90/group1/M00/00/05/rBN4LFq8p5SAJT0wA5k4vpHKf7Q325.mp4", "D:\\test", "test2");
 //        Flv2Imgs("C:\\Users\\ch\\Desktop\\马宝国-连五鞭.flv", "C:\\Users\\ch\\Desktop\\Thread", "test");
-        Flv2Imgs("C:\\Users\\ch\\Desktop\\鸡你太美素材无水印.flv", "C:\\Users\\ch\\Desktop\\Thread", "test");
+//        Flv2Imgs("C:\\Users\\ch\\Desktop\\鸡你太美素材无水印.flv", "C:\\Users\\ch\\Desktop\\Thread", "test");
         //Flv2Imgs("C:/Users\\Administrator\\Desktop\\VID_20171229_162251.mp4", "G:\\test", "111");
+        Flv2Imgs("./resources/flv/五五开.flv", "./resources/result/flv/", "test");
     }
 
     public static void FlvConvert() {
