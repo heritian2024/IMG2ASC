@@ -10,16 +10,16 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.nio.Buffer;
 
 public class VideoConvert {
 
     public static void main(String[] args) throws Exception {
 
         // Flv2Imgs("http://101.132.110.90/group1/M00/00/05/rBN4LFq8p5SAJT0wA5k4vpHKf7Q325.mp4", "D:\\test", "test2");
-        Flv2Imgs("C:\\Users\\ch\\Desktop\\马宝国-连五鞭.flv", "C:\\Users\\ch\\Desktop\\Thread", "test");
-//        Flv2Imgs("C:\\Users\\ch\\Desktop\\马宝国-耗子尾汁.flv", "C:\\Users\\ch\\Desktop\\Thread", "test2");
+//        Flv2Imgs("C:\\Users\\ch\\Desktop\\马宝国-连五鞭.flv", "C:\\Users\\ch\\Desktop\\Thread", "test");
+//        Flv2Imgs("C:\\Users\\ch\\Desktop\\鸡你太美素材无水印.flv", "C:\\Users\\ch\\Desktop\\Thread", "test");
         //Flv2Imgs("C:/Users\\Administrator\\Desktop\\VID_20171229_162251.mp4", "G:\\test", "111");
+        Flv2Imgs("./resources/flv/五五开.flv", "./resources/result/flv/", "test");
     }
 
     public static void FlvConvert() {
@@ -34,17 +34,17 @@ public class VideoConvert {
         // recorder.setVideoOption("tune", "zerolatency");
         // ultrafast(终极快)提供最少的压缩（低编码器CPU）和最大的视频流大小；
         // 参考以下命令: ffmpeg -i '' -crf 30 -preset ultrafast
-        recorder.setVideoOption("preset", "ultrafast");
-        recorder.setVideoOption("crf", "30");
+//        recorder.setVideoOption("preset", "ultrafast");
+//        recorder.setVideoOption("crf", "30");
         // 视频编码器输出的比特率2000kbps/s
 //        recorder.setVideoBitrate(2000000);
         recorder.setVideoBitrate(fFmpegFrameGrabber.getVideoBitrate());
         // H.264编码格式
-//        recorder.setVideoCodec(avcodec.AV_CODEC_ID_H264);
-        recorder.setVideoCodec(fFmpegFrameGrabber.getVideoCodec());
+        recorder.setVideoCodec(avcodec.AV_CODEC_ID_H264);
+//        recorder.setVideoCodec(fFmpegFrameGrabber.getVideoCodec());
         // 提供输出流封装格式(rtmp协议只支持flv封装格式)
-//        recorder.setFormat("flv");
-        recorder.setFormat(fFmpegFrameGrabber.getFormat());
+        recorder.setFormat("mp4");
+//        recorder.setFormat(fFmpegFrameGrabber.getFormat());
         // 视频帧率
 //        recorder.setFrameRate(30);
         recorder.setFrameRate(fFmpegFrameGrabber.getFrameRate());
@@ -52,20 +52,21 @@ public class VideoConvert {
         recorder.setGopSize(60);
         // 不可变(固定)音频比特率
         recorder.setAudioOption("crf", "0");
+//        recorder.setAudioOption("ar", "16000");
         // Highest quality
         recorder.setAudioQuality(0);
         // 音频比特率 192 Kbps
-//        recorder.setAudioBitrate(192000);
-        recorder.setAudioBitrate(fFmpegFrameGrabber.getAudioBitrate());
+        recorder.setAudioBitrate(192000);
+//        recorder.setAudioBitrate(fFmpegFrameGrabber.getAudioBitrate());
         // 频采样率
-//        recorder.setSampleRate(44100);
-        recorder.setSampleRate(fFmpegFrameGrabber.getSampleRate());
+        recorder.setSampleRate(44100);
+//        recorder.setSampleRate(fFmpegFrameGrabber.getSampleRate());
         // 双通道(立体声)
-//        recorder.setAudioChannels(2);
-        recorder.setAudioChannels(fFmpegFrameGrabber.getAudioChannels());
+        recorder.setAudioChannels(2);
+//        recorder.setAudioChannels(fFmpegFrameGrabber.getAudioChannels());
         // 音频编/解码器
-//        recorder.setAudioCodec(avcodec.AV_CODEC_ID_AAC);
-        recorder.setAudioCodec(fFmpegFrameGrabber.getAudioCodec());
+        recorder.setAudioCodec(avcodec.AV_CODEC_ID_AAC);
+//        recorder.setAudioCodec(fFmpegFrameGrabber.getAudioCodec());
         return recorder;
 
 
@@ -118,11 +119,11 @@ public class VideoConvert {
         while ((frame = fFmpegFrameGrabber.grabFrame()) != null) {
             //一帧一帧去抓取视频图片，fFmpegFrameGrabber.grabImage();每次抓取下一帧
             //手机录的视频有旋转角度，需要旋转处理//导致没有声音，先注释
-            if (null != rotate && rotate.length() > 1) {
-                OpenCVFrameConverter.ToIplImage converter = new OpenCVFrameConverter.ToIplImage();
-                iplImage = converter.convert(frame);
-                frame = converter.convert(rotate(iplImage, Integer.valueOf(rotate)));
-            }
+//            if (null != rotate && rotate.length() > 1) {
+//                OpenCVFrameConverter.ToIplImage converter = new OpenCVFrameConverter.ToIplImage();
+//                iplImage = converter.convert(frame);
+//                frame = converter.convert(rotate(iplImage, Integer.valueOf(rotate)));
+//            }
             //输出第几帧图片
             doExecuteFrame(frame.clone(), targerFilePath, targetFileName + ++count);
             try {
@@ -149,18 +150,17 @@ public class VideoConvert {
             fFmpegFrameRecorder.record(frame);
         }
 
-//        FrameGrabber grabberVideo = null;
-//        Frame frameVideo;
-//        //抓取音频帧
-//        grabberVideo = new FFmpegFrameGrabber(filePath);
-//        grabberVideo.start();
-//        fFmpegFrameRecorder.setSampleRate(grabberVideo.getSampleRate());
-//        //然后录入音频
-//        while ((frameVideo = grabberVideo.grabFrame()) != null) {
-//            fFmpegFrameRecorder.record(frameVideo);
-//        }
-//        grabberVideo.stop();
-//        grabberVideo.release();
+        //抓取音频帧
+        FFmpegFrameGrabber grabberVideo = new FFmpegFrameGrabber(filePath);
+        grabberVideo.start();
+        //然后录入音频
+        Frame frameVideo = null;
+        while ((frameVideo = grabberVideo.grabSamples()) != null) {
+            fFmpegFrameRecorder.setTimestamp(grabberVideo.getTimestamp()); // 告诉录制器这个audioSamples的音频时长
+            fFmpegFrameRecorder.record(frameVideo);
+        }
+        grabberVideo.stop();
+        grabberVideo.release();
 
 
         fFmpegFrameGrabber.stop();

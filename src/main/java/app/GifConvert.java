@@ -124,4 +124,14 @@ public class GifConvert extends BaseConvert {
             System.out.println("JPGS to GIF Failed.");
         }
     }
+
+    public static void main(String [] args){
+        String inpath = "C:\\Users\\ch\\Desktop\\弹果闪电鞭.gif";
+        String outpath = "C:\\Users\\ch\\Desktop\\Thread\\gif2gif\\";
+
+        GifConvert gifConvert = new GifConvert(3);
+        gifConvert.Gif2Gif(inpath,outpath);
+
+    }
+
 }

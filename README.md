@@ -28,9 +28,23 @@
 
 ![cxk2](./doc/cxk2.gif)![2cxk2](./doc/2cxk2.gif)![cxk2](./doc/3cxk2.gif)![cxk2](./doc/3cxk2.gif)
 
+### FLV视频成果展示
+
+用到了五五开的经典卡布奇诺。
+
+![五五开](./resources/result/flv/test195-ascii.jpg)
+![五五开](./resources/result/flv/test195.jpg)
+
+![五五开](./resources/flv/五五开.flv)
+![五五开](./resources/result/flv/test.flv)
+
 ## 支持作者
 
 工程会不定期更新，还有一些待定的功能可能后续会增加上，比如视频FLV的处理、公众号小程序支持。如果有问题可以留言或联系我，希望大家喜欢。
+
+请作者喝杯可乐吧!
+
+![微信码](./doc/wechat.jpg)
 
 ## Reference
 

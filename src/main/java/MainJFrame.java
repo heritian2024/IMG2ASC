@@ -96,7 +96,6 @@ public class MainJFrame extends JFrame {
         this.add(outTextField);
         //设置事件监听
         inButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser jfc = new JFileChooser();
                 jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -109,7 +108,6 @@ public class MainJFrame extends JFrame {
         });
 
         outButton.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 JFileChooser jfc = new JFileChooser();
                 jfc.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -141,7 +139,6 @@ public class MainJFrame extends JFrame {
         JButton button1 = new JButton("开始");
         button1.setBounds(10 + 50 + 10 + 50 + 10 + 40 + 10 + 50, 10 + 50 + 10 + 50 + 10, 80, 30);
         button1.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
                 String inpath = inTextField.getText();
                 String outpath = outTextField.getText();
@@ -169,7 +166,6 @@ public class MainJFrame extends JFrame {
         JButton button2 = new JButton("停止");
         button2.setBounds(10 + 50 + 10 + 50 + 10 + 40 + 10 + 50 + 20 + 80, 10 + 50 + 10 + 50 + 10, 80, 30);
         button2.addActionListener(new ActionListener() {
-            @Override
             public void actionPerformed(ActionEvent e) {
 //                JOptionPane.showMessageDialog(null, "暂未开发停止功能，关闭窗口即可！", "SORRY", JOptionPane.ERROR_MESSAGE);
                 if (JOptionPane.YES_NO_OPTION == JOptionPane.showConfirmDialog(null, "是否暂停所有操作并退出？", "关闭程序", JOptionPane.YES_NO_OPTION)) {
