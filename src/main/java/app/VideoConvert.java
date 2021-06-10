@@ -124,7 +124,7 @@ public class VideoConvert {
                 frame = converter.convert(rotate(iplImage, Integer.valueOf(rotate)));
             }
             //输出第几帧图片
-            doExecuteFrame(frame, targerFilePath, targetFileName + ++count);
+            doExecuteFrame(frame.clone(), targerFilePath, targetFileName + ++count);
             try {
                 String srcImgFile = targerFilePath + "\\" + targetFileName + count + ".jpg";
                 String asciiImgFile = targerFilePath + "\\" + targetFileName + count + "-ascii.jpg";
@@ -140,13 +140,13 @@ public class VideoConvert {
                 frame.imageHeight =asciiFrame.imageHeight;
                 frame.imageWidth =asciiFrame.imageWidth;
                 frame.imageStride =asciiFrame.imageStride;
-
-                fFmpegFrameRecorder.setTimestamp(fFmpegFrameGrabber.getTimestamp());
-                fFmpegFrameRecorder.record(frame);
             } catch (Exception e) {
                 // 会出现莫名的帧数处理错误，跳过
+                // FIX:并非是错误帧，是音频帧，因为无法读入图像数据而导致报错
                 System.out.println("跳过错误帧：" + count);
             }
+            fFmpegFrameRecorder.setTimestamp(fFmpegFrameGrabber.getTimestamp());
+            fFmpegFrameRecorder.record(frame);
         }
 
 //        FrameGrabber grabberVideo = null;
