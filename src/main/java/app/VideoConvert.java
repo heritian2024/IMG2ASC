@@ -17,9 +17,9 @@ public class VideoConvert {
 
         // Flv2Imgs("http://101.132.110.90/group1/M00/00/05/rBN4LFq8p5SAJT0wA5k4vpHKf7Q325.mp4", "D:\\test", "test2");
 //        Flv2Imgs("C:\\Users\\ch\\Desktop\\马宝国-连五鞭.flv", "C:\\Users\\ch\\Desktop\\Thread", "test");
-//        Flv2Imgs("C:\\Users\\ch\\Desktop\\鸡你太美素材无水印.flv", "C:\\Users\\ch\\Desktop\\Thread", "test");
-        //Flv2Imgs("C:/Users\\Administrator\\Desktop\\VID_20171229_162251.mp4", "G:\\test", "111");
-        Flv2Imgs("./resources/flv/五五开.flv", "./resources/result/flv/", "test");
+        Flv2Imgs("C:\\Users\\cfets\\Desktop\\765060141_nb3-1-64.flv", "C:\\Users\\cfets\\Desktop\\Thread", "test");
+//        Flv2Imgs("C:/Users\\Administrator\\Desktop\\VID_20171229_162251.mp4", "G:\\test", "111");
+//        Flv2Imgs("./resources/flv/五五开.flv", "./resources/result/flv/", "test");
     }
 
     public static void FlvConvert() {
@@ -100,7 +100,20 @@ public class VideoConvert {
      * @param targetFileName
      * @throws Exception
      */
-    public static void Flv2Imgs(String filePath, String targerFilePath, String targetFileName)
+    public static void Flv2Imgs(String filePath, String targerFilePath, String targetFileName) throws Exception {
+        Flv2AsciiFlv(filePath,targerFilePath,targetFileName,3);
+    }
+
+
+    /**
+     * 普通视频转换为字符画视频
+     * @param filePath
+     * @param targerFilePath
+     * @param targetFileName
+     * @param SPEED
+     * @throws Exception
+     */
+    public static void Flv2AsciiFlv(String filePath, String targerFilePath, String targetFileName, int SPEED)
             throws Exception {
         Frame frame = null;
         IplImage iplImage = null;
@@ -115,6 +128,9 @@ public class VideoConvert {
         FFmpegFrameRecorder fFmpegFrameRecorder = null;
         fFmpegFrameRecorder = setRecorder(targerFilePath + "\\" + targetFileName + ".flv", fFmpegFrameGrabber);
         fFmpegFrameRecorder.start();
+        //BufferedImage转换
+        ImageConvert imageConvert = new ImageConvert(SPEED);
+        Java2DFrameConverter java2DFrameConverter = new Java2DFrameConverter();
         //进入循环
         while ((frame = fFmpegFrameGrabber.grabFrame()) != null) {
             //一帧一帧去抓取视频图片，fFmpegFrameGrabber.grabImage();每次抓取下一帧
@@ -124,30 +140,58 @@ public class VideoConvert {
 //                iplImage = converter.convert(frame);
 //                frame = converter.convert(rotate(iplImage, Integer.valueOf(rotate)));
 //            }
-            //输出第几帧图片
-            doExecuteFrame(frame.clone(), targerFilePath, targetFileName + ++count);
+
+            /**
+             * method.1 需要读写文件，废弃此方法
+             */
+//            //输出第几帧图片
+//            doExecuteFrame(frame.clone(), targerFilePath, targetFileName + ++count);
+//            try {
+//                String srcImgFile = targerFilePath + "\\" + targetFileName + count + ".jpg";
+//                String asciiImgFile = targerFilePath + "\\" + targetFileName + count + "-ascii.jpg";
+//                //进行字符画转换
+//                ImageConvert imageConvert = new ImageConvert();
+//                imageConvert.Image2Image(srcImgFile, asciiImgFile);
+//                BufferedImage bufferedImage = ImageIO.read(new File(asciiImgFile));
+//                Java2DFrameConverter java2dFrameConverter = new Java2DFrameConverter();
+//
+//                Frame asciiFrame = java2dFrameConverter.convert(bufferedImage);
+//                frame.image = asciiFrame.image;
+//                frame.imageChannels =asciiFrame.imageChannels;
+//                frame.imageDepth =asciiFrame.imageDepth;
+//                frame.imageHeight =asciiFrame.imageHeight;
+//                frame.imageWidth =asciiFrame.imageWidth;
+//                frame.imageStride =asciiFrame.imageStride;
+//            } catch (Exception e) {
+//                // 会出现莫名的帧数处理错误，跳过
+//                // FIX:并非是错误帧，是音频帧，因为无法读入图像数据而导致报错
+//                System.out.println("跳过错误帧：" + count);
+//            }
+
+            /**
+             * method.2 直接使用BufferedImage转换，提升转换速度
+             */
             try {
-                String srcImgFile = targerFilePath + "\\" + targetFileName + count + ".jpg";
-                String asciiImgFile = targerFilePath + "\\" + targetFileName + count + "-ascii.jpg";
-                //进行字符画转换
-                ImageConvert imageConvert = new ImageConvert();
-                imageConvert.Image2Image(srcImgFile, asciiImgFile);
-                BufferedImage bufferedImage = ImageIO.read(new File(asciiImgFile));
-                Java2DFrameConverter java2dFrameConverter = new Java2DFrameConverter();
-                Frame asciiFrame = java2dFrameConverter.convert(bufferedImage);
+                if (null == frame || null == frame.image) {
+                    continue;
+                }
+                //执行转换
+                BufferedImage bufferedImage = java2DFrameConverter.getBufferedImage(frame);
+                BufferedImage asciiBufferedImage = imageConvert.Image2AsciiImage(bufferedImage);
+                Frame asciiFrame = java2DFrameConverter.convert(asciiBufferedImage);
+                //替换元素
                 frame.image = asciiFrame.image;
                 frame.imageChannels =asciiFrame.imageChannels;
                 frame.imageDepth =asciiFrame.imageDepth;
                 frame.imageHeight =asciiFrame.imageHeight;
                 frame.imageWidth =asciiFrame.imageWidth;
                 frame.imageStride =asciiFrame.imageStride;
-            } catch (Exception e) {
-                // 会出现莫名的帧数处理错误，跳过
-                // FIX:并非是错误帧，是音频帧，因为无法读入图像数据而导致报错
-                System.out.println("跳过错误帧：" + count);
+            }catch (Exception e){
+                //跳过音频帧
             }
             fFmpegFrameRecorder.setTimestamp(fFmpegFrameGrabber.getTimestamp());
             fFmpegFrameRecorder.record(frame);
+            System.out.println("执行帧：" + count++);
         }
 
         //抓取音频帧

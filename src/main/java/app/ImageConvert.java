@@ -4,6 +4,7 @@ import algo.RGB2Gray;
 import util.FileHelper;
 
 import javax.imageio.ImageIO;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -89,4 +90,40 @@ public class ImageConvert extends BaseConvert {
         }
     }
 
+    /**
+     * BufferedImage直接转换
+     * @param inBufferedImage
+     * @return
+     */
+    public BufferedImage Image2AsciiImage(BufferedImage inBufferedImage) {
+        BufferedImage asciiBufferedImage = null;
+        StringBuffer asciiContent = new StringBuffer();
+        int width = inBufferedImage.getWidth();
+        int height = inBufferedImage.getHeight();
+        int minx = inBufferedImage.getMinX();
+        int miny = inBufferedImage.getMinY();
+        for (int j = miny; j < height; j += SPEED) {
+            for (int k = minx; k < width; k += SPEED) {
+                int pixel = inBufferedImage.getRGB(k, j);
+                char ascii = RGB2Gray.conver(pixel);
+                asciiContent.append(ascii);
+            }
+            asciiContent.append("\r\n");
+        }
+        //绘图准备
+        asciiBufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        Graphics graphics = asciiBufferedImage.createGraphics();
+        graphics.fillRect(0, 0, width, height);
+        graphics.setColor(Color.BLACK);//设置前景色
+        graphics.setFont(new Font(FONT, Font.PLAIN, SPEED));
+        //文本内容解析
+        String[] strs = asciiContent.toString().split(SPLIT_TYPOS);
+        for (int i = 0; i < strs.length; i++) {
+            for (int j = 0; j < strs[i].length(); j++) {
+                graphics.drawString(String.valueOf(strs[i].charAt(j)), j * SPEED, (i + 1) * SPEED);
+            }
+        }
+        graphics.dispose();
+        return asciiBufferedImage;
+    }
 }
