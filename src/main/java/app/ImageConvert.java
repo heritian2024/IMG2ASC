@@ -111,7 +111,8 @@ public class ImageConvert extends BaseConvert {
             asciiContent.append("\r\n");
         }
         //绘图准备
-        asciiBufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+//        asciiBufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+        asciiBufferedImage = new BufferedImage(width, height, inBufferedImage.getType());
         Graphics graphics = asciiBufferedImage.createGraphics();
         graphics.fillRect(0, 0, width, height);
         graphics.setColor(Color.BLACK);//设置前景色

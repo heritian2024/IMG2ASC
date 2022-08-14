@@ -180,6 +180,8 @@ public class VideoConvert {
                 BufferedImage asciiBufferedImage = imageConvert.Image2AsciiImage(bufferedImage);
                 Frame asciiFrame = java2DFrameConverter.convert(asciiBufferedImage);
                 //替换元素
+//                System.out.println(frame.getTypes());
+//                System.out.println(asciiFrame.getTypes());
                 frame.image = asciiFrame.image;
                 frame.imageChannels =asciiFrame.imageChannels;
                 frame.imageDepth =asciiFrame.imageDepth;
@@ -191,7 +193,7 @@ public class VideoConvert {
             }
             fFmpegFrameRecorder.setTimestamp(fFmpegFrameGrabber.getTimestamp());
             fFmpegFrameRecorder.record(frame);
-            System.out.println("执行帧：" + count++);
+            System.out.println("执行帧["+targetFileName+"]：" + count++);
         }
 
         //抓取音频帧
